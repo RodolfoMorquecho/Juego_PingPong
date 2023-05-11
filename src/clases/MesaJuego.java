@@ -6,10 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
+//Para comenzar a dibujar los elementos, primero se debe crear un panel(lamina) que ira sobre la ventana previamente configurada
+//Ya colocado el panel, se podran dibujar cada componente sobre el.
 public class MesaJuego extends JPanel {
-    //Para comenzar a dibujar los elementos, primero se debe crear un panel(lamina) que ira sobre la ventana previamente configurada
-    //Ya colocado el panel, se podran dibujar cada componente sobre el.
 
+    Pelota pelota = new Pelota(0,0);  //Crear objeto de la clase Pelota con las coordenadas x=0,y=0 como parametro
     public MesaJuego(){  //Constructor
         setBackground(Color.BLACK);
     }
@@ -26,7 +27,26 @@ public class MesaJuego extends JPanel {
         //El objeto g2 esta listo para acceder a metodos de la clase Graphics2D y dibujar
         //Dibujo de pelota
         g2.setColor(Color.WHITE);
-        g2.fill(new Rectangle2D.Double(0,0,10,10));
+
+        //g2.fill(new Rectangle2D.Double(0,0,10,10));  dibujo de pelota sin usar una clase especifica
+
+        //Se llama al metodo dibujar para ejecutar/plasmar el dibujo en el panel
+        dibujar(g2);  //El parametro g2 que previamente se casteo tambien se establecio con el color blanco
+
+        //Ya que se dibujo el primer frame con los componentes en una posición, se debe renovar el movimiento con el método actualizar
+        actualizar();
+    }
+
+    //Método destinado para configurar cada elemento que se pintara en el panel
+    public void dibujar(Graphics2D g){  //El parametro que va a recibir es el que se casteo de Graphics a Graphics2D
+        //Se accedera al metodo fill para establecer que se hara uso de un cubo(pelota) y para dar las dimendiones
+        //se pasa como parametro el método getPelota(), al cual se accede mediante el objeto perteneciente a la clase Pelota
+        g.fill(pelota.getPelota());
+    }
+
+    //Método para renovar cada movimiento de los elementos que se dibujaran dentro del panel
+    public void actualizar(){
+        pelota.mover(getBounds());  //Se pasa como parametro las dimensiones del panel
     }
 
 }
