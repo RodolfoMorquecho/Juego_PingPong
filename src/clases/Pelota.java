@@ -14,8 +14,8 @@ public class Pelota {
     private int dy = 1;
 
     //Contantes de las dimensiones que siempre tendra la pelota
-    private final int ANCHO = 15;
-    private final int LARGO = 15;
+    private final int ANCHO = 10;
+    private final int LARGO = 10;
 
     public Pelota(int x, int y){
         this.x = x;
@@ -33,11 +33,14 @@ public class Pelota {
         x += dx;  // x = x+1  ó  x = x-1   || posición actual = posición actual + 1
         y += dy;
 
-        if(x > limites.getMaxX()){  //Si la pelota es mayor al limite del panel en el eje x:
+        if(x >= limites.getMaxX()-10){  //Si la pelota es mayor al limite del panel en el eje x:
             dx = -dx;  //Ahora dx ya no valdra 1, si no que valdra "-1" hasta que la pelota se encuentre con el limite contrario
         }
 
-        if (y > limites.getMaxY()){  //Si la pelota es mayor al limite del panel en el eje y:
+        //El "-10" es devido a que el tamaño de la pelota tiene esas dimensiones, asi que al llgar al borde pareciera que lo
+        //atraviesa ya que la condicion detecta la orilla izquierda de la pelota como la posicion con la que trabaja
+
+        if (y >= limites.getMaxY()-10){  //Si la pelota es mayor al limite del panel en el eje y:
             dy = -dy;  ////Ahora dy ya no valdra 1, si no que valdra "-1" hasta que la pelota se encuentre con el limite contrario
         }
 
