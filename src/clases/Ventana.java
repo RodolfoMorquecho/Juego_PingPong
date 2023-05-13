@@ -18,6 +18,9 @@ public class Ventana extends JFrame {
         lamina = new MesaJuego();  //Se crea el objeto de la clase que contiene el panel y su configuracion
         add(lamina);  //Se agrega la lamina a la ventana
 
+        //Para que la clase EventoTeclado entre en funcionamiento se debe de instanciar
+        addKeyListener(new EventoTeclado());
+
         hilo = new Hilo(lamina);  //Se crea la instancia de Hilo y se pasa como parametro el panel(lamina) sobre la que trabajara
         hilo.start();  //Se inicia el proceso del hilo
     }

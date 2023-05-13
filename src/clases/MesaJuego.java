@@ -63,6 +63,10 @@ public class MesaJuego extends JPanel {
     //Método para renovar cada movimiento de los elementos que se dibujaran dentro del panel
     public void actualizar(){
         pelota.mover(getBounds());  //Se pasa como parametro las dimensiones del panel
+
+        //Se agrega el movimiento de las 2 raquetas, mediante las 2 instancias que ya tenemos de la clase Raqueta
+        raqueta1.moverR1(getBounds());
+        raqueta2.moverR2(getBounds());
     }
 
 }

@@ -18,8 +18,9 @@ public class EventoTeclado extends KeyAdapter {
     //El objeto KeyEvent contiene información acerca de que tecla es presionada o deja de serlo
     //KeyPressed: se invocara cada que se presiona una tecla
     //KeyReleased: se invocara cada que se suelte una tecla
-    public void KeyPressed(KeyEvent e){
 
+    @Override
+    public void keyPressed(KeyEvent e) {
         //Se declara una variable de tipo entero llamada 'id', el cual almacenara el código de la tecla que se presione
         int id = e.getKeyCode();
 
@@ -41,9 +42,10 @@ public class EventoTeclado extends KeyAdapter {
         }
     }
 
-    //Validación para cuando alguna de las teclas involucradas deje de ser presionada
-    public void KeyReleased(KeyEvent e){
 
+    //Validación para cuando alguna de las teclas involucradas deje de ser presionada
+    @Override
+    public void keyReleased(KeyEvent e) {
         //Se declara una variable de tipo entero llamada 'id', el cual almacenara el código de la tecla que se dejo de presionar
         int id = e.getKeyCode();
 

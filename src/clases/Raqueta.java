@@ -1,5 +1,6 @@
 package clases;
 
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 //Clase que configura las variables/método para pintar las raquetas
@@ -19,5 +20,27 @@ public class Raqueta {
 
     public Rectangle2D getRaqueta(){  //Método que retorna posicionamiento y tamño de la raqueta
         return new Rectangle2D.Double(x, y, ANCHO, ALTO);
+    }
+
+    //Se crearan los metodos para darle las mecanicas(movimiento) a las raquetas
+
+    //Rauqeta 1
+    public void moverR1(Rectangle limites){  //Se pasa como parametro la dimension donde se desplazara la raqueta
+        if (EventoTeclado.w){  //Cuando w es verdadero, significa que esta siendo presionada
+            y--;  //se aumentara de 1 en 1, como sabemos la raqueta esta en medio para que visualmente suba, se deben disminuir posicione en y
+        }
+        if (EventoTeclado.s){
+            y++;
+        }
+    }
+
+    //Raqueta 2
+    public void moverR2(Rectangle limites){
+        if (EventoTeclado.up){  //Se puede acceder a las variables sin instanciar la clase, debido a que son de tipo static
+            y--;
+        }
+        if (EventoTeclado.down){
+            y++;
+        }
     }
 }
