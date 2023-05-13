@@ -11,6 +11,14 @@ import java.awt.geom.Rectangle2D;
 public class MesaJuego extends JPanel {
 
     Pelota pelota = new Pelota(0,0);  //Crear objeto de la clase Pelota con las coordenadas x=0,y=0 como parametro
+
+    //Se hara la instancia de la clase Raqueta para crear 2 objetos de ella, con distintas posiciones(coordenadas)
+    //Aunque a un inicio se dieron las medidas de ANCHO:800 y ALTO:500 para la ventana(panel), el area donde se trabajara
+    //se reduce debido a los bordes en ambos ejes, para saber la dimension del área de trabajo se debe acceder
+    //al metodo getMaxX/Y() mediante getBounds y mostrara en la terminal las dimensiones.  x:786  y:463
+    Raqueta raqueta1 = new Raqueta(10,200);
+    Raqueta raqueta2 = new Raqueta(786 -10 - Raqueta.ANCHO,200);  //Se restara 10 de espacio y el ancho de la raqueta
+
     public MesaJuego(){  //Constructor
         setBackground(Color.BLACK);
     }
@@ -42,6 +50,13 @@ public class MesaJuego extends JPanel {
         //Se accedera al metodo fill para establecer que se hara uso de un cubo(pelota) y para dar las dimendiones
         //se pasa como parametro el método getPelota(), al cual se accede mediante el objeto perteneciente a la clase Pelota
         g.fill(pelota.getPelota());
+
+        //Para saber la dimension final del panel, se imprime el valor maximo de los ejes X, Y.
+        //System.out.println("x: "+ getBounds().getMaxX());    R:786
+        //System.out.println("y: "+ getBounds().getMaxY());    R:463
+
+        g.fill(raqueta1.getRaqueta());
+        g.fill(raqueta2.getRaqueta());
     }
 
     //Método para renovar cada movimiento de los elementos que se dibujaran dentro del panel
