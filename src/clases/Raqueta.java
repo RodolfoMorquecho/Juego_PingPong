@@ -2,6 +2,7 @@ package clases;
 
 import java.awt.geom.Rectangle2D;
 
+//Clase que configura las variables/método para pintar las raquetas
 public class Raqueta {
     //Coordenadas de las posiciones iniciales de la raqueta
     private int x;

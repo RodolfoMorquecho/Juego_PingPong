@@ -55,6 +55,7 @@ public class MesaJuego extends JPanel {
         //System.out.println("x: "+ getBounds().getMaxX());    R:786
         //System.out.println("y: "+ getBounds().getMaxY());    R:463
 
+        //Se pintan las 2 raquetas
         g.fill(raqueta1.getRaqueta());
         g.fill(raqueta2.getRaqueta());
     }
