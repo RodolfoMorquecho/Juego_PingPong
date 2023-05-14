@@ -12,7 +12,7 @@ public class Hilo extends Thread{
     public void run(){
         while (true){  //Mientras sea true, el panel/lienzo/lamina se vuelve a dibujar
             try {
-                Thread.sleep(2);  //El método sleep(t) de la clase Thread permite detener la ejecución del thread durante t milisegundos.
+                Thread.sleep(4);  //El método sleep(t) de la clase Thread permite detener la ejecución del thread durante t milisegundos.
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

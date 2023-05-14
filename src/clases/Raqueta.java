@@ -26,20 +26,24 @@ public class Raqueta {
 
     //Rauqeta 1
     public void moverR1(Rectangle limites){  //Se pasa como parametro la dimension donde se desplazara la raqueta
-        if (EventoTeclado.w){  //Cuando w es verdadero, significa que esta siendo presionada
+        //En el condicional tambien se debe de poner un limite para que el cuerpo de la raqueta no sobrepase los limites de la ventana
+        if (EventoTeclado.w  &&  y > limites.getMinY()){  //Cuando w es verdadero, significa que esta siendo presionada
             y--;  //se aumentara de 1 en 1, como sabemos la raqueta esta en medio para que visualmente suba, se deben disminuir posicione en y
         }
-        if (EventoTeclado.s){
+        //Si 's' es true y la posición 'y' de la raqueta restando el ALTO de la misma es menor al limite maximo, se podra mover la raquete
+        //Se resta el ALTO para el limite inferior, ya que toma la esquina izq. superior de la raqueta como el punto final de la misma,
+        //visualmente hasta que ese punto no toque el limite seguira desplazandose hacia abajo.
+        if (EventoTeclado.s  &&  y < limites.getMaxY()-ALTO){
             y++;
         }
     }
 
     //Raqueta 2
     public void moverR2(Rectangle limites){
-        if (EventoTeclado.up){  //Se puede acceder a las variables sin instanciar la clase, debido a que son de tipo static
+        if (EventoTeclado.up  &&  y > limites.getMinY()){  //Se puede acceder a las variables sin instanciar la clase, debido a que son de tipo static
             y--;
         }
-        if (EventoTeclado.down){
+        if (EventoTeclado.down  &&  y < limites.getMaxY()-ALTO){
             y++;
         }
     }

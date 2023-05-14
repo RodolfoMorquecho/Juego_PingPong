@@ -62,11 +62,20 @@ public class MesaJuego extends JPanel {
 
     //Método para renovar cada movimiento de los elementos que se dibujaran dentro del panel
     public void actualizar(){
-        pelota.mover(getBounds());  //Se pasa como parametro las dimensiones del panel
+        //Se pasa como primer parametro las dimensiones del panel
+        //El segundo parametro se manda con que otro elemento hara colision la pelota, en este caso, la raqueta1
+        //El tercer parametro al igual que el segundo, se manda las dimensiones(objeto) con el que hara colision la pelota
+        pelota.mover(getBounds(), colision(raqueta1.getRaqueta()), colision(raqueta2.getRaqueta()));
 
         //Se agrega el movimiento de las 2 raquetas, mediante las 2 instancias que ya tenemos de la clase Raqueta
         raqueta1.moverR1(getBounds());
         raqueta2.moverR2(getBounds());
     }
 
+    //Se creara el método 'colision' de tipo boolean ya que el return sera 'true' o 'false' en caso de que la pelota colisione con las raquetas
+    //El método 'intersects' perteneciente de la clase 'Rectangle' determina o detecta si dos rectangulos se cruzan o no, y dependiendo
+    //de eso retorna true o false, en este caso, se tienen involucradas las raquetas y la pelota
+    private boolean colision(Rectangle2D r){
+        return pelota.getPelota().intersects(r);
+    }
 }
