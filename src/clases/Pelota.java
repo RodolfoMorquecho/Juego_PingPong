@@ -48,7 +48,7 @@ public class Pelota {
             dx = -dx;  //Cambia la dirección de la pelota
 
             //Se situa la pelota en la orilla de la raqueta2:
-            //Se hace casting debido a que "limites.getMsxX()" es de tipo double.
+            //Se hace casting debido a que "limites.getMaxX()" es de tipo double.
             //para posicionar correctamente la pelota, a la medida total en X se le resta 10 del espacio entre raqueta y el borde,
             //el ancho de la raqueta y el ancho de la pelota(para que no se sobreposicione a la altura de la raqueta2)
             x = (int) (limites.getMaxX()-10-ANCHO-Raqueta.ANCHO);
