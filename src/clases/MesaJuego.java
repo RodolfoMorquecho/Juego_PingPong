@@ -58,6 +58,9 @@ public class MesaJuego extends JPanel {
         //Se pintan las 2 raquetas
         g.fill(raqueta1.getRaqueta());
         g.fill(raqueta2.getRaqueta());
+
+        //Trazado de linea central
+        g.fill(pelota.lineaCentral(getBounds()));
     }
 
     //Método para renovar cada movimiento de los elementos que se dibujaran dentro del panel
@@ -70,6 +73,9 @@ public class MesaJuego extends JPanel {
         //Se agrega el movimiento de las 2 raquetas, mediante las 2 instancias que ya tenemos de la clase Raqueta
         raqueta1.moverR1(getBounds());
         raqueta2.moverR2(getBounds());
+
+
+        //pelota.lineaCentral(getBounds());
     }
 
     //Se creara el método 'colision' de tipo boolean ya que el return sera 'true' o 'false' en caso de que la pelota colisione con las raquetas

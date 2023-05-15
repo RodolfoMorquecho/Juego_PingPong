@@ -75,4 +75,11 @@ public class Pelota {
             dy = -dy;
         }
     }
+
+    public Rectangle2D lineaCentral(Rectangle limites){
+        int centroX = (int) (limites.getMaxX() / 2);
+        int LARGO = (int) limites.getMaxY();;
+        int ANCHO = 2;
+        return new Rectangle2D.Double(centroX, limites.getMinY(), ANCHO, LARGO);
+    }
 }
