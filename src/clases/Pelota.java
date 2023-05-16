@@ -76,10 +76,11 @@ public class Pelota {
         }
     }
 
-    public Rectangle2D lineaCentral(Rectangle limites){
-        int centroX = (int) (limites.getMaxX() / 2);
-        int LARGO = (int) limites.getMaxY();;
-        int ANCHO = 2;
-        return new Rectangle2D.Double(centroX, limites.getMinY(), ANCHO, LARGO);
+    //Trazo de la linea central de la mesa
+    public Rectangle2D lineaCentral(Rectangle limites){  //Se pasa como parametro las medidas de la mesa de juego
+        int centroX = (int) ((limites.getMaxX() / 2) - 1);  //Se obtiene la posicion central en 'x' de la mesa y e le resta 1
+        int LARGO = (int) limites.getMaxY();  //Hacemos casting para obtener el tamaño de 'y' de la mesa
+        int ANCHO = 3;  //Tamaño de la linea central
+        return new Rectangle2D.Double(centroX, limites.getMinY(), ANCHO, LARGO);  //Retornar el objeto con todas las medidas y posicion para ser dibujada
     }
 }
