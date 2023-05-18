@@ -34,6 +34,8 @@ public class Pelota {
         x += dx;  // x = x+1  ó  x = x-1   || posición actual = posición actual + 1
         y += dy;
 
+
+        //------------------------------SECCION DE COLISION ENTRE PELOTA Y RAQUETAS-------------------------------
         if (colisionR1){  //Si la colision en la raqueta1 es true:
             dx = -dx;  //Cambia la dirección de la pelota
 
@@ -54,6 +56,8 @@ public class Pelota {
             x = (int) (limites.getMaxX()-10-ANCHO-Raqueta.ANCHO);
         }
 
+
+        //---------------------SECCION DE LIMITES DESPLAZAMIENTO DE LA PELOTA Y COMPORTAMIENTO-------------------------
         if(x >= limites.getMaxX()-10){  //Si la pelota es mayor al limite del panel en el eje x:
             dx = -dx;  //Ahora dx ya no valdra 1, si no que valdra "-1" hasta que la pelota se encuentre con el limite contrario
         }
@@ -61,7 +65,7 @@ public class Pelota {
         //El "-10" es devido a que el tamaño de la pelota tiene esas dimensiones, asi que al llgar al borde pareciera que lo
         //atraviesa ya que la condicion detecta la orilla izquierda de la pelota como la posicion con la que trabaja
 
-        if (y >= limites.getMaxY()-10){  //Si la pelota es mayor al limite del panel en el eje y:
+        if (y >= limites.getMaxY()-10){  //Si la pelota es mayor al limite del panel en el eje y(Se resta 10 por el ancho de pelota):
             dy = -dy;  ////Ahora dy ya no valdra 1, si no que valdra "-1" hasta que la pelota se encuentre con el limite contrario
         }
 
@@ -73,6 +77,20 @@ public class Pelota {
 
         if (y < 0){
             dy = -dy;
+        }
+
+        //-----------------------------SECCION DE MARCADOR Y FRONTERAS DE ANOTACION------------------------------------
+        //Se crean 2 banderas las cuales seran las lineas que indicaran que el equipo contrario marco 1 punto en cancha contraria
+        boolean lineaMeta1 = false;
+        boolean lineaMeta2 = false;
+
+        int centroX = (int) (limites.getMaxX()/2);  //Obtener el centro en eje X para que la pelota siempre aparezca desde ese punto
+
+        if(x < limites.getMinX()+10+Raqueta.ANCHO){
+            lineaMeta1 = true;
+        }
+        if (x > limites.getMaxX()-10-Raqueta.ANCHO){
+            lineaMeta2 = true;
         }
     }
 

@@ -64,8 +64,8 @@ public class MesaJuego extends JPanel {
 
         //Crear un metodo
         //Fuente:  https://laurel.datsi.fi.upm.es/_media/docencia/cursos/java/java2d.pdf
-        g.setFont(new Font("Serif",Font.BOLD,34));  //Se le dara formato y tamaño a la fuente
-        g.drawString("2",200,35);  //Se escribe el mensaje a mostrar y las coordenadas en donde se dibujara
+        //g.setFont(new Font("Serif",Font.BOLD,34));  //Se le dara formato y tamaño a la fuente
+        //g.drawString("2",200,35);  //Se escribe el mensaje a mostrar y las coordenadas en donde se dibujara
     }
 
     //Método para renovar cada movimiento de los elementos que se dibujaran dentro del panel
@@ -89,4 +89,5 @@ public class MesaJuego extends JPanel {
     private boolean colision(Rectangle2D r){
         return pelota.getPelota().intersects(r);
     }
+
 }
