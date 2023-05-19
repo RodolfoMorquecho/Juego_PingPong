@@ -81,16 +81,20 @@ public class Pelota {
 
         //-----------------------------SECCION DE MARCADOR Y FRONTERAS DE ANOTACION------------------------------------
         //Se crean 2 banderas las cuales seran las lineas que indicaran que el equipo contrario marco 1 punto en cancha contraria
-        boolean lineaMeta1 = false;
-        boolean lineaMeta2 = false;
+        //boolean lineaMeta1 = false;
+        //boolean lineaMeta2 = false;
 
+        int lineaMeta1 = (int) (limites.getMinX()+10+Raqueta.ANCHO);
+        int lineaMeta2 = (int) (limites.getMaxX()-10-Raqueta.ANCHO);
+        int jugador1 = 0;
+        int jugador2 = 0;
         int centroX = (int) (limites.getMaxX()/2);  //Obtener el centro en eje X para que la pelota siempre aparezca desde ese punto
 
-        if(x < limites.getMinX()+10+Raqueta.ANCHO){
-            lineaMeta1 = true;
+        if(x < lineaMeta1){
+            jugador2++;
         }
-        if (x > limites.getMaxX()-10-Raqueta.ANCHO){
-            lineaMeta2 = true;
+        if (x > lineaMeta2){
+            jugador1++;
         }
     }
 
