@@ -26,6 +26,7 @@ public class Pelota {
         return new Rectangle2D.Double(x, y, ANCHO, LARGO);
     }
 
+
     //Método que contiene la interacción de la pelota dentro de la mesa de juego
     //Se pasara como parametro un objeto de tipo Rectangle llamado limites que nos dara el tamaño maximo en los ejes x,y.
     //Se pasaran 2 parametros mas de tipo boolean donde se transmite si han hecho contacto con alguna de las raquetas
@@ -84,17 +85,21 @@ public class Pelota {
         //boolean lineaMeta1 = false;
         //boolean lineaMeta2 = false;
 
-        int lineaMeta1 = (int) (limites.getMinX()+10+Raqueta.ANCHO);
-        int lineaMeta2 = (int) (limites.getMaxX()-10-Raqueta.ANCHO);
+        int lineaMeta1 = (int) (limites.getMinX()+5+Raqueta.ANCHO);  //Limite de mete del primer jugador
+        int lineaMeta2 = (int) (limites.getMaxX()-5-Raqueta.ANCHO);  //Limite de meta del segundo jugador
         int jugador1 = 0;
         int jugador2 = 0;
         int centroX = (int) (limites.getMaxX()/2);  //Obtener el centro en eje X para que la pelota siempre aparezca desde ese punto
 
-        if(x < lineaMeta1){
-            jugador2++;
+        if(x < lineaMeta1){  //Si la posicion en X de la pelota es menor que la linea de meta del jugador1:
+            jugador2++;  //El marcador del jugador 2 aumenta su puntuacion
+            x = centroX+1;  //Al hacer anotación la pelota hace respawn en el centro de la mesa
+            dx = -dx;  //Se cambia la dirección hacia el jugador que marco un punto
         }
-        if (x > lineaMeta2){
-            jugador1++;
+        if (x > lineaMeta2){  //Si la posicion en X de la pelota es menor que la linea de meta del jugador2:
+            jugador1++;  //El marcador del jugador 1 aumenta su puntuacion
+            x = centroX-1;
+            dx = -dx;
         }
     }
 
