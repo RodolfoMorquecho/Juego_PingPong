@@ -9,6 +9,10 @@ public class Pelota {
     private int x;
     private int y;
 
+    //Variables correspondientes a los marcadores de cada jugador
+    int jugador1 = 0;  //Se incrementara, cada que el jugador marque una anotacion
+    int jugador2 = 0;
+
     //Variables para incrementar/decrementar las coordenadas del posicionamiento de la pelota
     private int dx = 1;
     private int dy = 1;
@@ -87,12 +91,13 @@ public class Pelota {
 
         int lineaMeta1 = (int) (limites.getMinX()+5+Raqueta.ANCHO);  //Limite de mete del primer jugador
         int lineaMeta2 = (int) (limites.getMaxX()-5-Raqueta.ANCHO);  //Limite de meta del segundo jugador
-        int jugador1 = 0;
-        int jugador2 = 0;
+
         int centroX = (int) (limites.getMaxX()/2);  //Obtener el centro en eje X para que la pelota siempre aparezca desde ese punto
 
         if(x < lineaMeta1){  //Si la posicion en X de la pelota es menor que la linea de meta del jugador1:
+            //jugador1 y jugador2 son variables globales
             jugador2++;  //El marcador del jugador 2 aumenta su puntuacion
+            //String player1 = String.valueOf(jugador2);  //Se pasa de enteo a String para poder pasarlo como parametro en el el metodo "drawString"
             x = centroX+1;  //Al hacer anotación la pelota hace respawn en el centro de la mesa
             dx = -dx;  //Se cambia la dirección hacia el jugador que marco un punto
         }

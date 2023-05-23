@@ -10,7 +10,8 @@ import java.awt.geom.Rectangle2D;
 //Ya colocado el panel, se podran dibujar cada componente sobre el.
 public class MesaJuego extends JPanel {
 
-    Pelota pelota = new Pelota(0,0);  //Crear objeto de la clase Pelota con las coordenadas x=0,y=0 como parametro
+    Pelota pelota = new Pelota(393,231);  //Crear objeto de la clase Pelota con las coordenadas en el centro de la ventana, asi sera la primera aparicion
+
 
     //Se hara la instancia de la clase Raqueta para crear 2 objetos de ella, con distintas posiciones(coordenadas)
     //Aunque a un inicio se dieron las medidas de ANCHO:800 y ALTO:500 para la ventana(panel), el area donde se trabajara
@@ -62,10 +63,10 @@ public class MesaJuego extends JPanel {
         //Trazado de linea central
         g.fill(pelota.lineaCentral(getBounds()));
 
-        //Crear un metodo
-        //Fuente:  https://laurel.datsi.fi.upm.es/_media/docencia/cursos/java/java2d.pdf
+        //Se configura el tipo de fuente,borde y tamaño
         g.setFont(new Font("Serif",Font.BOLD,34));  //Se le dara formato y tamaño a la fuente
-        g.drawString("2",200,35);  //Se escribe el mensaje a mostrar y las coordenadas en donde se dibujara
+        g.drawString(pelota.jugador1+"",200,35);  //Se escribe el mensaje a mostrar y las coordenadas en donde se dibujara
+        g.drawString( pelota.jugador2+"",590,35);  //El primer parametro es un contador, solo se concatena a una cadena vacia para ser mostrado
     }
 
     //Método para renovar cada movimiento de los elementos que se dibujaran dentro del panel
