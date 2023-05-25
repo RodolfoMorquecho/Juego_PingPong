@@ -2,6 +2,9 @@ package clases;
 
 //Clase especial para configurar dimensiones y posicion de la pelota
 
+import obtenerRecursos.Audio;
+
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
@@ -26,6 +29,14 @@ public class Pelota {
         this.y = y;
     }
 
+    //-------------------------SECCION DE INSTANCIACION Y DECLARACION DE ARCHIVOS DE AUDIO------------------------------
+    Audio audio = new Audio();  //Crear objeto de la clase audio para tener acceso al metodo getAudio y asignar las direcciones de los sonidos
+    AudioClip rebote1 = audio.getAudio("/recursos/rebote_pelota1.wav");
+    AudioClip rebote2 = audio.getAudio("/recursos/rebote_pelota2.wav");
+    AudioClip falta = audio.getAudio("/recursos/falta.wav");
+    //-------------------------------------------------------------------------------------------------------------------
+
+    //Método que retorna el rectangulo(pelota) con todas sus dimensiones especificadas
     public Rectangle2D getPelota(){  //Método que retorna posicionamiento y tamño de la pelota
         return new Rectangle2D.Double(x, y, ANCHO, LARGO);
     }
@@ -50,6 +61,8 @@ public class Pelota {
 
             //Una alternativa para que se elimine ese bug es posicionar la pelota en el borde de la raqueta y ejecute el cambio de dirección
             x = 10+ANCHO;
+
+            rebote1.play();  //Cada que colisione con la raqueta1 se reproducira el sonido de "rebote1"
         }
         if (colisionR2){  //Si la colision en la raqueta2 es true:
             dx = -dx;  //Cambia la dirección de la pelota
@@ -59,6 +72,8 @@ public class Pelota {
             //para posicionar correctamente la pelota, a la medida total en X se le resta 10 del espacio entre raqueta y el borde,
             //el ancho de la raqueta y el ancho de la pelota(para que no se sobreposicione a la altura de la raqueta2)
             x = (int) (limites.getMaxX()-10-ANCHO-Raqueta.ANCHO);
+
+            rebote2.play();  //Cada que colisione con la raqueta2 se reproducira el sonido de "rebote2"
         }
 
 
@@ -100,11 +115,15 @@ public class Pelota {
             //String player1 = String.valueOf(jugador2);  //Se pasa de enteo a String para poder pasarlo como parametro en el el metodo "drawString"
             x = centroX+1;  //Al hacer anotación la pelota hace respawn en el centro de la mesa
             dx = -dx;  //Se cambia la dirección hacia el jugador que marco un punto
+
+            falta.play();  //Cada que haya una anotacion del jugador2 se reproducira el sonido "falta"
         }
         if (x > lineaMeta2){  //Si la posicion en X de la pelota es menor que la linea de meta del jugador2:
             jugador1++;  //El marcador del jugador 1 aumenta su puntuacion
             x = centroX-1;
             dx = -dx;
+
+            falta.play();  //Cada que haya una anotacion del jugador1 se reproducira el sonido "falta"
         }
     }
 
