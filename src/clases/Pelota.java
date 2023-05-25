@@ -31,9 +31,9 @@ public class Pelota {
 
     //-------------------------SECCION DE INSTANCIACION Y DECLARACION DE ARCHIVOS DE AUDIO------------------------------
     Audio audio = new Audio();  //Crear objeto de la clase audio para tener acceso al metodo getAudio y asignar las direcciones de los sonidos
-    AudioClip rebote1 = audio.getAudio("/recursos/rebote_pelota1.wav");
+    AudioClip rebote1 = audio.getAudio("/recursos/rebote_pelota1.wav");  //Se asigna el sonido correspondiente a cada var declarada
     AudioClip rebote2 = audio.getAudio("/recursos/rebote_pelota2.wav");
-    AudioClip falta = audio.getAudio("/recursos/falta.wav");
+    AudioClip falta = audio.getAudio("/recursos/falta.wav");  //Sonido para cuando haya un punto de cualquiera de los 2 jugadores
     //-------------------------------------------------------------------------------------------------------------------
 
     //Método que retorna el rectangulo(pelota) con todas sus dimensiones especificadas
