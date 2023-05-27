@@ -85,7 +85,6 @@ public class MesaJuego extends JPanel {
         raqueta1.moverR1(getBounds());
         raqueta2.moverR2(getBounds());
 
-
         //pelota.lineaCentral(getBounds());
     }
 
@@ -109,11 +108,11 @@ public class MesaJuego extends JPanel {
         g1.drawString(pelota.jugador1+"",200,35);  //Se escribe el mensaje a mostrar y las coordenadas en donde se dibujara
         g2.drawString( pelota.jugador2+"",590,35);  //El primer parametro es un contador, solo se concatena a una cadena vacia para ser mostrado
 
-        if (pelota.getPuntaje1() == 3){  //Si el puntaje del jugador 1 es igual a 5:
+        if (pelota.getPuntaje1() == 5){  //Si el puntaje del jugador 1 es igual a 5:
             g.drawString("El jugador 1 ha ganado!",230,180);  //Se muestra en pantalla un mensaje del ganador
             Pelota.finDeJuego = true;  //Se cambia el estado de la var "finDeJuego"
         }
-        if (pelota.getPuntaje2() == 3){  //Si el puntaje del jugador 2 es igual a 5:
+        if (pelota.getPuntaje2() == 5){  //Si el puntaje del jugador 2 es igual a 5:
             g.drawString("El jugador 2 ha ganado!",230,180);  //Se muestra en pantalla un mensaje del ganador
             Pelota.finDeJuego = true;
         }
