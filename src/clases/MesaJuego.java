@@ -33,6 +33,10 @@ public class MesaJuego extends JPanel {
         //Se crea un objeto de tipo Graphics2D(Subclase de Graphics) ya que tiene mas herramientas para pintar
         Graphics2D g2 = (Graphics2D) g;  //Se hara casting para covertir el objeto Graphics en Graphics2D
 
+
+        //Se llama al siguiente metodo para pintar el puntaje de ambos jugadores y mostrar al ganador
+        dibujarMarcador(g2);
+
         //El objeto g2 esta listo para acceder a metodos de la clase Graphics2D y dibujar
         //Dibujo de pelota
         g2.setColor(Color.WHITE);
@@ -61,12 +65,13 @@ public class MesaJuego extends JPanel {
         g.fill(raqueta2.getRaqueta());
 
         //Trazado de linea central
-        g.fill(pelota.lineaCentral(getBounds()));
+        g.fill(pelota.lineaCentral(getBounds()));  //Se pinta de color blanco
 
-        //Se configura el tipo de fuente,borde y tamaño
-        g.setFont(new Font("Serif",Font.BOLD,34));  //Se le dara formato y tamaño a la fuente
-        g.drawString(pelota.jugador1+"",200,35);  //Se escribe el mensaje a mostrar y las coordenadas en donde se dibujara
-        g.drawString( pelota.jugador2+"",590,35);  //El primer parametro es un contador, solo se concatena a una cadena vacia para ser mostrado
+        //Condicional para pintar la linea central de negro en caso de que termine el juego
+        if (pelota.getPuntaje1() >= 5 || pelota.getPuntaje2() >= 5){
+            g.setColor(Color.BLACK);  //Se cambia el color de la fuente
+            g.fill(pelota.lineaCentral(getBounds()));  //Se rellena de ese color la linea central
+        }
     }
 
     //Método para renovar cada movimiento de los elementos que se dibujaran dentro del panel
@@ -89,6 +94,29 @@ public class MesaJuego extends JPanel {
     //de eso retorna true o false, en este caso, se tienen involucradas las raquetas y la pelota
     private boolean colision(Rectangle2D r){
         return pelota.getPelota().intersects(r);
+    }
+
+    public void dibujarMarcador(Graphics2D g){
+        //Se crean 2 variables de tipo GRaphics2D
+        Graphics2D g1 = g;
+        Graphics2D g2 = g;
+
+        //Se configura el tipo de fuente,borde y tamaño
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("Serif",Font.BOLD,32));  //Se le dara formato y tamaño a la fuente
+
+        //Se pinta la puntuacion de los 2 jugadores con las especificaciones previas de la fuente y coordenadas
+        g1.drawString(pelota.jugador1+"",200,35);  //Se escribe el mensaje a mostrar y las coordenadas en donde se dibujara
+        g2.drawString( pelota.jugador2+"",590,35);  //El primer parametro es un contador, solo se concatena a una cadena vacia para ser mostrado
+
+        if (pelota.getPuntaje1() == 3){  //Si el puntaje del jugador 1 es igual a 5:
+            g.drawString("El jugador 1 ha ganado!",230,180);  //Se muestra en pantalla un mensaje del ganador
+            Pelota.finDeJuego = true;  //Se cambia el estado de la var "finDeJuego"
+        }
+        if (pelota.getPuntaje2() == 3){  //Si el puntaje del jugador 2 es igual a 5:
+            g.drawString("El jugador 2 ha ganado!",230,180);  //Se muestra en pantalla un mensaje del ganador
+            Pelota.finDeJuego = true;
+        }
     }
 
 }

@@ -8,6 +8,7 @@ public class Ventana extends JFrame {
     private MesaJuego lamina;  //Se declara un objeto de la clase MesaJuego
     private Hilo hilo;  //Se declara un objeto de la clase Hilo
 
+
     //Constructor donde se incluiran toda las caracteristicas de la ventana
     public Ventana(){
         setTitle("Pong");  //Titulo de la ventana
@@ -21,7 +22,9 @@ public class Ventana extends JFrame {
         //Para que la clase EventoTeclado entre en funcionamiento se debe de instanciar
         addKeyListener(new EventoTeclado());
 
+
         hilo = new Hilo(lamina);  //Se crea la instancia de Hilo y se pasa como parametro el panel(lamina) sobre la que trabajara
         hilo.start();  //Se inicia el proceso del hilo
+
     }
 }

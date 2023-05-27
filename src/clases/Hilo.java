@@ -10,7 +10,13 @@ public class Hilo extends Thread{
     }
 
     public void run(){
-        while (true){  //Mientras sea true, el panel/lienzo/lamina se vuelve a dibujar
+        //Mientras sea true, el panel/lienzo/lamina se vuelve a dibujar
+
+        //finDeJuego esta inicializada como false, así que, el condicional dentro del while "!finDeJuego" quiere decir:
+        //Mientras finDeJuego = true, ejecutara las acciones dentr del while
+
+        //Si se cambia el estado del "finDejuego" a true, al llegar al punto del while lo convertira en false con el "!" por lo que no ejecutara las acciones
+        while (!Pelota.finDeJuego){
             try {
                 Thread.sleep(4);  //El método sleep(t) de la clase Thread permite detener la ejecución del thread durante t milisegundos.
             } catch (InterruptedException e) {

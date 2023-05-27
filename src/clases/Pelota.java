@@ -24,6 +24,10 @@ public class Pelota {
     private final int ANCHO = 10;
     private final int LARGO = 10;
 
+    //Variable inicializada en false, para indicar que el juego aun esta en funcionamiento
+    public static boolean finDeJuego = false;
+
+
     public Pelota(int x, int y){
         this.x = x;
         this.y = y;
@@ -117,6 +121,7 @@ public class Pelota {
             dx = -dx;  //Se cambia la dirección hacia el jugador que marco un punto
 
             falta.play();  //Cada que haya una anotacion del jugador2 se reproducira el sonido "falta"
+
         }
         if (x > lineaMeta2){  //Si la posicion en X de la pelota es menor que la linea de meta del jugador2:
             jugador1++;  //El marcador del jugador 1 aumenta su puntuacion
@@ -133,5 +138,14 @@ public class Pelota {
         int LARGO = (int) limites.getMaxY();  //Hacemos casting para obtener el tamaño de 'y' de la mesa
         int ANCHO = 3;  //Tamaño de la linea central
         return new Rectangle2D.Double(centroX, limites.getMinY(), ANCHO, LARGO);  //Retornar el objeto con todas las medidas y posicion para ser dibujada
+    }
+
+    //Metodos para obtener el valor del marcador de cada jugador
+    public int getPuntaje1(){
+        return jugador1;
+    }
+
+    public int getPuntaje2(){
+        return jugador2;
     }
 }
