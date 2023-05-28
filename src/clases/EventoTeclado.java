@@ -12,7 +12,7 @@ public class EventoTeclado extends KeyAdapter {
     //Se crearan 4 variables de tipo boolean que se utilizaran para asignar al control de las raquetas, es necesario sean static para usarlas dentro del método
     // 'w' y 's' seran asociadas con la primer raqueta, con w la raqueta subira y con s bajara
     // 'up' y 'down' seran asociadas con la segunda raqueta, con up la raqueta subira y con down bajara
-    static boolean w, s, up, down;
+    static boolean w, s, up, down, pause;
 
     //Al heredar de la clase KeyAdapter se puede hacer uso del método KeyPressed y el método KeyReleased, en ambos se pasa como parametro un 'KeyEvent'
     //El objeto KeyEvent contiene información acerca de que tecla es presionada o deja de serlo
@@ -40,6 +40,11 @@ public class EventoTeclado extends KeyAdapter {
         if (id == KeyEvent.VK_DOWN){  //Raquete2 -> mover abajo
             down = true;
         }
+
+        //
+        if (id == KeyEvent.VK_SPACE){
+            pause = true;
+        }
     }
 
 
@@ -60,6 +65,11 @@ public class EventoTeclado extends KeyAdapter {
         }
         if (id == KeyEvent.VK_DOWN){
             down = false;
+        }
+        //
+
+        if (id == KeyEvent.VK_SPACE){
+            pause = false;
         }
     }
 }
