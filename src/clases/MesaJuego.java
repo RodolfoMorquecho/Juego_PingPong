@@ -34,9 +34,6 @@ public class MesaJuego extends JPanel {
         Graphics2D g2 = (Graphics2D) g;  //Se hara casting para covertir el objeto Graphics en Graphics2D
 
 
-        //Se llama al siguiente metodo para pintar el puntaje de ambos jugadores y mostrar al ganador
-        dibujarMarcador(g2);
-
         //El objeto g2 esta listo para acceder a metodos de la clase Graphics2D y dibujar
         //Dibujo de pelota
         g2.setColor(Color.WHITE);
@@ -45,6 +42,10 @@ public class MesaJuego extends JPanel {
 
         //Se llama al metodo dibujar para ejecutar/plasmar el dibujo en el panel
         dibujar(g2);  //El parametro g2 que previamente se casteo tambien se establecio con el color blanco
+
+        //Se llama al siguiente metodo para pintar el puntaje de ambos jugadores y mostrar al ganador
+        //Se pinta despues este metedo ya que la pelota y linea central se pintan de negro primero y asi se evita que se sobrepongan sobre el marcador
+        dibujarMarcador(g2);
 
         //Ya que se dibujo el primer frame con los componentes en una posición, se debe renovar el movimiento con el método actualizar
         actualizar();
@@ -71,6 +72,7 @@ public class MesaJuego extends JPanel {
         if (pelota.getPuntaje1() >= 5 || pelota.getPuntaje2() >= 5){
             g.setColor(Color.BLACK);  //Se cambia el color de la fuente
             g.fill(pelota.lineaCentral(getBounds()));  //Se rellena de ese color la linea central
+            g.fill(pelota.getPelota());  //Se pinta de negro la pelota al terminar el juego para que no tape el mensaje del ganador
         }
     }
 
