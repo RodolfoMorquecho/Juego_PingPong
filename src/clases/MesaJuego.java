@@ -72,7 +72,7 @@ public class MesaJuego extends JPanel {
         if (pelota.getPuntaje1() >= 5 || pelota.getPuntaje2() >= 5){
             g.setColor(Color.BLACK);  //Se cambia el color de la fuente
             g.fill(pelota.lineaCentral(getBounds()));  //Se rellena de ese color la linea central
-            g.fill(pelota.getPelota());  //Se pinta de negro la pelota al terminar el juego para que no tape el mensaje del ganador
+            g.fill(pelota.getPelota());  //Se pinta de negro la pelota al terminar el juego para que no tape el mensaje del ganadors
         }
     }
 
@@ -113,11 +113,14 @@ public class MesaJuego extends JPanel {
         if (pelota.getPuntaje1() == 5){  //Si el puntaje del jugador 1 es igual a 5:
             g.drawString("El jugador 1 ha ganado!",230,180);  //Se muestra en pantalla un mensaje del ganador
             Pelota.finDeJuego = true;  //Se cambia el estado de la var "finDeJuego"
+            pelota.ganador.play();
         }
         if (pelota.getPuntaje2() == 5){  //Si el puntaje del jugador 2 es igual a 5:
             g.drawString("El jugador 2 ha ganado!",230,180);  //Se muestra en pantalla un mensaje del ganador
             Pelota.finDeJuego = true;
+            pelota.ganador.play();  //Se agrega el sonido del ganador
         }
+
     }
 
 }

@@ -38,6 +38,7 @@ public class Pelota {
     AudioClip rebote1 = audio.getAudio("/recursos/rebote_pelota1.wav");  //Se asigna el sonido correspondiente a cada var declarada
     AudioClip rebote2 = audio.getAudio("/recursos/rebote_pelota2.wav");
     AudioClip falta = audio.getAudio("/recursos/falta.wav");  //Sonido para cuando haya un punto de cualquiera de los 2 jugadores
+    AudioClip ganador = audio.getAudio("/recursos/ganador.wav");  //Sonido para el jugador ganador
     //-------------------------------------------------------------------------------------------------------------------
 
     //Método que retorna el rectangulo(pelota) con todas sus dimensiones especificadas
