@@ -13,6 +13,7 @@ public class EventoTeclado extends KeyAdapter {
     // 'w' y 's' seran asociadas con la primer raqueta, con w la raqueta subira y con s bajara
     // 'up' y 'down' seran asociadas con la segunda raqueta, con up la raqueta subira y con down bajara
     static boolean w, s, up, down, pause;
+    int i = 0;
 
     //Al heredar de la clase KeyAdapter se puede hacer uso del método KeyPressed y el método KeyReleased, en ambos se pasa como parametro un 'KeyEvent'
     //El objeto KeyEvent contiene información acerca de que tecla es presionada o deja de serlo
@@ -41,9 +42,18 @@ public class EventoTeclado extends KeyAdapter {
             down = true;
         }
 
-        //
+        //Al presionar la barra espaciadora se pausa el juego o se quita la misma
         if (id == KeyEvent.VK_SPACE){
-            pause = true;
+            pause = true;  //Al presionar por primera vez se le asigna true a la variable pause, teniendo en cuenta que el contador vale 0 en este punto
+            i++;  //Aumenta el contador a 1 y el juego esta en pausa
+            if (i%2 == 0){  //Se verifica el condicional 1%2 == 0 y no se cumple ya que el residuo es diferente de 0, el juego sigue en pausa
+                pause = false;  //Se cambiara el estado de la variable, cuando se vuelva a presionar la barra espaciadora, aumente el contador a 2
+                                //y se pueda acceder al if ya que 2%2 si da como residuo 0.
+                //En la clase Hilo se tiene un if con condicional "(!EventoTeclado.pause)":
+                //Al presionar la barra se le asigna "true" a "pause" pero con el signo '!' lo pasa a false por lo que se deja de
+                //cuplir el condicional y pausa el funcionamiento del hilo hasta que se presione la barra de nuevo para cambiar el estado
+            }
+
         }
     }
 
@@ -66,10 +76,11 @@ public class EventoTeclado extends KeyAdapter {
         if (id == KeyEvent.VK_DOWN){
             down = false;
         }
-        //
+        //Para la pausa no son necesarias las 3 lineas sig. ya que al oltar la barra de espacio se terminaria la pausa,
+        //y usuamlente la pausa es removida volviendo a presionar la tecla sin tiempo indefinido
 
-        if (id == KeyEvent.VK_SPACE){
-            pause = false;
-        }
+        //if (id == KeyEvent.VK_SPACE){
+        //    pause = false;
+        //}
     }
 }

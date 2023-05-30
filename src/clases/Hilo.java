@@ -17,12 +17,17 @@ public class Hilo extends Thread{
 
         //Si se cambia el estado del "finDejuego" a true, al llegar al punto del while lo convertira en false con el "!" por lo que no ejecutara las acciones
         while (!Pelota.finDeJuego){
-            try {
-                Thread.sleep(4);  //El método sleep(t) de la clase Thread permite detener la ejecución del thread durante t milisegundos.
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            //Al presionar la barra se asigna true a pause pero el operador '!' lo convierte en false por lo que se deja de cuplir el
+            //condicional del if, y a su vez no permite el funcionamiento del hilo, hasta que se presione la barra de nuevo para cambiar estado
+            if(!EventoTeclado.pause){
+                try {
+                    Thread.sleep(4);  //El método sleep(t) de la clase Thread permite detener la ejecución del thread durante t milisegundos.
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                lienzo.repaint();  //El método repaint, vuelve a dibujar los componentes en la nueva posición y tapa el mismo componente en la pos anterior
             }
-            lienzo.repaint();  //El método repaint, vuelve a dibujar los componentes en la nueva posición y tapa el mismo componente en la pos anterior
+
         }
     }
 }
