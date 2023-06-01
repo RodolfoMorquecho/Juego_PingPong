@@ -1,5 +1,7 @@
 package clases;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -14,6 +16,9 @@ public class EventoTeclado extends KeyAdapter {
     // 'up' y 'down' seran asociadas con la segunda raqueta, con up la raqueta subira y con down bajara
     static boolean w, s, up, down, pause;
     int i = 0;
+
+    static JLabel etiqueta = new JLabel();
+
 
     //Al heredar de la clase KeyAdapter se puede hacer uso del método KeyPressed y el método KeyReleased, en ambos se pasa como parametro un 'KeyEvent'
     //El objeto KeyEvent contiene información acerca de que tecla es presionada o deja de serlo
@@ -44,14 +49,27 @@ public class EventoTeclado extends KeyAdapter {
 
         //Al presionar la barra espaciadora se pausa el juego o se quita la misma
         if (id == KeyEvent.VK_SPACE){
-            pause = true;  //Al presionar por primera vez se le asigna true a la variable pause, teniendo en cuenta que el contador vale 0 en este punto
+            //etiqueta.setBounds(370,208,40,40);
+            //etiqueta.setForeground(Color.orange);
+
             i++;  //Aumenta el contador a 1 y el juego esta en pausa
+            if (i%2 != 0){
+
+
+                pause = true;  //Al presionar por primera vez se le asigna true a la variable pause, teniendo en cuenta que el contador vale 0 en este punto
+
+                etiqueta.setText("Pausa");
+                //etiqueta.setVisible(pause);
+            }
             if (i%2 == 0){  //Se verifica el condicional 1%2 == 0 y no se cumple ya que el residuo es diferente de 0, el juego sigue en pausa
                 pause = false;  //Se cambiara el estado de la variable, cuando se vuelva a presionar la barra espaciadora, aumente el contador a 2
                                 //y se pueda acceder al if ya que 2%2 si da como residuo 0.
                 //En la clase Hilo se tiene un if con condicional "(!EventoTeclado.pause)":
                 //Al presionar la barra se le asigna "true" a "pause" pero con el signo '!' lo pasa a false por lo que se deja de
                 //cuplir el condicional y pausa el funcionamiento del hilo hasta que se presione la barra de nuevo para cambiar el estado
+                //etiqueta.setVisible(pause);
+
+                etiqueta.setText("");
             }
 
         }
@@ -83,4 +101,23 @@ public class EventoTeclado extends KeyAdapter {
         //    pause = false;
         //}
     }
+
+
+    //Método para posicionar la imagen de flecha durante la paua del juego
+    //System.out.println("x: "+ getBounds().getMaxX());    R:786
+    //System.out.println("y: "+ getBounds().getMaxY());    R:463
+   /* public static JLabel flechaPausa(String direccion){
+        ImageIcon imagen = new ImageIcon(direccion);
+        JLabel etiqueta = new JLabel(imagen);
+        etiqueta.setBounds(370,208,40,40);
+
+        return etiqueta;
+    }*/
 }
+
+
+// 1 Crear una etiqueta en un metodo con la palabra pausa
+// 2 Crear una variable bandera inicializada en false, para indicar que dicha etiqueta no es visible
+// 3 Crear un algoritmo qpara pasar de false a true la etiqueta y mostrarla durante la pausa del juego
+// 4 Dentro del mismo algoritmo tener en cuenta que al momento de volver a presionar la tecla de pausa, desaparezca la etiqueta
+// 5 Obviamente que el juego continue corriendo

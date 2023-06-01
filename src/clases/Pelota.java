@@ -4,6 +4,7 @@ package clases;
 
 import obtenerRecursos.Audio;
 
+import javax.swing.*;
 import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -149,4 +150,7 @@ public class Pelota {
     public int getPuntaje2(){
         return jugador2;
     }
+
+
+
 }

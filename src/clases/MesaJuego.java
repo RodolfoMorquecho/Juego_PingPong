@@ -49,6 +49,8 @@ public class MesaJuego extends JPanel {
 
         //Ya que se dibujo el primer frame con los componentes en una posición, se debe renovar el movimiento con el método actualizar
         actualizar();
+
+
     }
 
     //Método destinado para configurar cada elemento que se pintara en el panel
@@ -73,7 +75,9 @@ public class MesaJuego extends JPanel {
             g.setColor(Color.BLACK);  //Se cambia el color de la fuente
             g.fill(pelota.lineaCentral(getBounds()));  //Se rellena de ese color la linea central
             g.fill(pelota.getPelota());  //Se pinta de negro la pelota al terminar el juego para que no tape el mensaje del ganadors
+
         }
+
     }
 
     //Método para renovar cada movimiento de los elementos que se dibujaran dentro del panel
@@ -122,6 +126,7 @@ public class MesaJuego extends JPanel {
         }
 
     }
+
 
 }
 
