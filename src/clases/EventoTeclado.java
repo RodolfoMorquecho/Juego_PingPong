@@ -58,7 +58,7 @@ public class EventoTeclado extends KeyAdapter {
 
                 pause = true;  //Al presionar por primera vez se le asigna true a la variable pause, teniendo en cuenta que el contador vale 0 en este punto
 
-                etiqueta.setText("Pausa");
+                etiqueta.setText("Pausa");  //Cuando entre en este condicional, la etiqueta mostrara este mensaje
                 //etiqueta.setVisible(pause);
             }
             if (i%2 == 0){  //Se verifica el condicional 1%2 == 0 y no se cumple ya que el residuo es diferente de 0, el juego sigue en pausa
@@ -69,7 +69,7 @@ public class EventoTeclado extends KeyAdapter {
                 //cuplir el condicional y pausa el funcionamiento del hilo hasta que se presione la barra de nuevo para cambiar el estado
                 //etiqueta.setVisible(pause);
 
-                etiqueta.setText("");
+                etiqueta.setText("");  //Cuando entre en este condicional, la etiqueta se limpiara y el juego esta en movimiento
             }
 
         }

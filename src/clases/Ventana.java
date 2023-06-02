@@ -23,8 +23,11 @@ public class Ventana extends JFrame {
         //-----------------------------------Etiqueta de pausa-----------------------------------------------------
         lamina.setLayout(null);  //Indicar al programa que se hara uso de coordenadas para la interfaz con el metodo Layout(JFrame),
                                  // null para que no se posicione la interfaz hasta que reciba instrucciones
-        EventoTeclado.etiqueta.setBounds(370,208,40,40);  //Se le indican las coordenadas donde se posicionara la etiqueta
-        EventoTeclado.etiqueta.setForeground(Color.orange);  //Se asigna un color a la fuente de la etiqueta
+        EventoTeclado.etiqueta.setBounds(350,190,80,60);  //Se le indican las coordenadas donde se posicionara la etiqueta
+        EventoTeclado.etiqueta.setForeground(Color.YELLOW);  //Se asigna un color a la fuente de la etiqueta
+        EventoTeclado.etiqueta.setOpaque(true);  //Permitir que se tenga acceso a pintar el fondo de la etiqueta
+        EventoTeclado.etiqueta.setBackground(Color.BLACK);
+        EventoTeclado.etiqueta.setFont(new Font("Arial",3,28));
         lamina.add(EventoTeclado.etiqueta);  //Se agrega la etiqueta en la lamina(panel)
 
 
