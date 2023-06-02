@@ -38,7 +38,6 @@ public class MesaJuego extends JPanel {
         //Dibujo de pelota
         g2.setColor(Color.WHITE);
 
-        //g2.fill(new Rectangle2D.Double(0,0,10,10));  dibujo de pelota sin usar una clase especifica
 
         //Se llama al metodo dibujar para ejecutar/plasmar el dibujo en el panel
         dibujar(g2);  //El parametro g2 que previamente se casteo tambien se establecio con el color blanco
@@ -49,8 +48,6 @@ public class MesaJuego extends JPanel {
 
         //Ya que se dibujo el primer frame con los componentes en una posición, se debe renovar el movimiento con el método actualizar
         actualizar();
-
-
     }
 
     //Método destinado para configurar cada elemento que se pintara en el panel
@@ -116,7 +113,7 @@ public class MesaJuego extends JPanel {
 
         if (pelota.getPuntaje1() == 5){  //Si el puntaje del jugador 1 es igual a 5:
             g.drawString("El jugador 1 ha ganado!",230,180);  //Se muestra en pantalla un mensaje del ganador
-            Pelota.finDeJuego = true;  //Se cambia el estado de la var "finDeJuego"
+            Pelota.finDeJuego = true;  //Se cambia el estado de la variabke "finDeJuego"
             pelota.ganador.play();
         }
         if (pelota.getPuntaje2() == 5){  //Si el puntaje del jugador 2 es igual a 5:

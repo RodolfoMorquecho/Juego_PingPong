@@ -21,14 +21,14 @@ public class Pelota {
     private int dx = 1;
     private int dy = 1;
 
-    //Contantes de las dimensiones que siempre tendra la pelota
+    //Constantes de las dimensiones que siempre tendra la pelota
     private final int ANCHO = 10;
     private final int LARGO = 10;
 
     //Variable inicializada en false, para indicar que el juego aun esta en funcionamiento
     public static boolean finDeJuego = false;
 
-
+    //Constructor que pide el posicionamiendo de la pelota mediante parametro
     public Pelota(int x, int y){
         this.x = x;
         this.y = y;
@@ -59,7 +59,7 @@ public class Pelota {
 
         //------------------------------SECCION DE COLISION ENTRE PELOTA Y RAQUETAS-------------------------------
         if (colisionR1){  //Si la colision en la raqueta1 es true:
-            dx = -dx;  //Cambia la dirección de la pelota
+            dx = -dx;  //Cambia la dirección de la pelota en eje x
 
             //Existe un bug al correr el juego, cuando la pelota colisiona con la raqueta no rebota hacia la dirección contraria
             //debido a que se tiene en la condición de movimiento de la pelota que se va a desplazar hasta los limites de la
@@ -106,9 +106,7 @@ public class Pelota {
         }
 
         //-----------------------------SECCION DE MARCADOR Y FRONTERAS DE ANOTACION------------------------------------
-        //Se crean 2 banderas las cuales seran las lineas que indicaran que el equipo contrario marco 1 punto en cancha contraria
-        //boolean lineaMeta1 = false;
-        //boolean lineaMeta2 = false;
+        //Se crean 2 limites las cuales seran las lineas que indicaran que el equipo contrario marco 1 punto en cancha contraria
 
         int lineaMeta1 = (int) (limites.getMinX()+5+Raqueta.ANCHO);  //Limite de mete del primer jugador
         int lineaMeta2 = (int) (limites.getMaxX()-5-Raqueta.ANCHO);  //Limite de meta del segundo jugador
