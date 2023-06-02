@@ -25,11 +25,10 @@ public class Ventana extends JFrame {
                                  // null para que no se posicione la interfaz hasta que reciba instrucciones
         EventoTeclado.etiqueta.setBounds(350,190,80,60);  //Se le indican las coordenadas donde se posicionara la etiqueta
         EventoTeclado.etiqueta.setForeground(Color.YELLOW);  //Se asigna un color a la fuente de la etiqueta
+        EventoTeclado.etiqueta.setFont(new Font("Arial",3,28));  //Se asignan tipo, estilo y tamaño de fuente
 
-        EventoTeclado.etiqueta.setFont(new Font("Arial",3,28));
         lamina.add(EventoTeclado.etiqueta);  //Se agrega la etiqueta en la lamina(panel)
-
-
+        //----------------------------------------------------------------------------------------------------------
 
         //Para que la clase EventoTeclado entre en funcionamiento se debe de instanciar
         addKeyListener(new EventoTeclado());

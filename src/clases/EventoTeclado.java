@@ -50,16 +50,19 @@ public class EventoTeclado extends KeyAdapter {
         if (id == KeyEvent.VK_SPACE){
             i++;  //Aumenta el contador a 1 y el juego esta en pausa
 
-            if (i%2 != 0){  //Ejecutara las acciones solo si el valor del contador 'i' es impar
-                //Al estar en pausa el juego se agregara una etiqueta que se pintara en la mitad de la mesa, indicando al jugador la pausa
-                //Debido a que a la mitad tambien se encuentre la linea central que indica el respawn de pelota, se pierde un poco
-                //Para poner un fondo del mismo color de mesa(negro) a la etiqueta se necesita activar el metodo "setOpaque"
-                etiqueta.setOpaque(true);  //Permitir que se tenga acceso a pintar el fondo de la etiqueta
-                EventoTeclado.etiqueta.setBackground(Color.BLACK);  //Se pinta de negro el fondo de etiqueta
+            if (i%2 != 0 ){  //Ejecutara las acciones solo si el valor del contador 'i' es impar
+                //Este condicional es para evitar que se muetre en pantala la etiqueta de "pausa" cuando el juego finalizo, evitando tapar al ganador
+                if (!Pelota.finDeJuego){  //Si finDeJuego es falso, ejecutara las condiciones
+                    //Al estar en pausa el juego se agregara una etiqueta que se pintara en la mitad de la mesa, indicando al jugador la pausa
+                    //Debido a que a la mitad tambien se encuentre la linea central que indica el respawn de pelota, se pierde un poco
+                    //Para poner un fondo del mismo color de mesa(negro) a la etiqueta se necesita activar el metodo "setOpaque"
+                    etiqueta.setOpaque(true);  //Permitir que se tenga acceso a pintar el fondo de la etiqueta
+                    EventoTeclado.etiqueta.setBackground(Color.BLACK);  //Se pinta de negro el fondo de etiqueta
 
-                pause = true;  //Al presionar por primera vez se le asigna true a la variable pause, teniendo en cuenta que el contador vale 0 en este punto
+                    pause = true;  //Al presionar por primera vez se le asigna true a la variable pause, teniendo en cuenta que el contador vale 0 en este punto
 
-                etiqueta.setText("Pausa");  //Cuando entre en este condicional, la etiqueta mostrara este mensaje
+                    etiqueta.setText("Pausa");  //Cuando entre en este condicional, la etiqueta mostrara este mensaje
+                }
             }
             if (i%2 == 0){  //Se verifica el condicional 1%2 == 0 y no se cumple ya que el residuo es diferente de 0, el juego sigue en pausa
                 etiqueta.setText("");  //Cuando entre en este condicional, la etiqueta se limpiara y el juego esta en movimiento
@@ -96,7 +99,7 @@ public class EventoTeclado extends KeyAdapter {
         if (id == KeyEvent.VK_DOWN){
             down = false;
         }
-        //Para la pausa no son necesarias las 3 lineas sig. ya que al oltar la barra de espacio se terminaria la pausa,
+        //Para la pausa no son necesarias las 3 lineas sig. ya que al soltar la barra de espacio se terminaria la pausa,
         //y usuamlente la pausa es removida volviendo a presionar la tecla sin tiempo indefinido
 
         //if (id == KeyEvent.VK_SPACE){
