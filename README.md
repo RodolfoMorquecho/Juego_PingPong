@@ -15,6 +15,7 @@ Juego clasico de ping pong para dos jugadores desarrollado en Java
 
 ### Pantalla final 
 
-![FinDeJuego](https://github.com/RodolfoMorquecho/Juego_PingPong/assets/99112892/ca66ce43-1d86-48b8-b5f4-4b1c34c05047)
+![FinDeJuego](https://github.com/RodolfoMorquecho/Juego_PingPong/assets/99112892/03ca7089-be1a-44d8-af17-dfc3bf94b20d)
+
 
 
