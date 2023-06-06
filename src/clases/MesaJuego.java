@@ -73,6 +73,7 @@ public class MesaJuego extends JPanel {
             g.fill(pelota.lineaCentral(getBounds()));  //Se rellena de ese color la linea central
             g.fill(pelota.getPelota());  //Se pinta de negro la pelota al terminar el juego para que no tape el mensaje del ganadors
 
+            pantallaMenu(g);
         }
 
     }
@@ -124,6 +125,22 @@ public class MesaJuego extends JPanel {
 
     }
 
+    public void pantallaMenu(Graphics2D g){
+        Graphics2D g1 = g;
+        Graphics2D g2 = g;
+
+        setBackground(Color.BLACK);
+
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Serif",Font.BOLD,22));
+
+        //Flecha de seleccion
+        int vector2X [] = {370, 370, 380};  //Vector del eje X
+        int vector2Y [] = {210, 220, 215};  //Vector del eje Y
+
+        g1.fillPolygon(vector2X, vector2Y, 3);
+
+    }
 
 }
 
