@@ -68,12 +68,13 @@ public class MesaJuego extends JPanel {
         g.fill(pelota.lineaCentral(getBounds()));  //Se pinta de color blanco
 
         //Condicional para pintar la linea central de negro en caso de que termine el juego
-        if (pelota.getPuntaje1() >= 5 || pelota.getPuntaje2() >= 5){
+        if (pelota.finDeJuego){ //Si la variable finDeJuego es true significa que ha terminado el juego
             g.setColor(Color.BLACK);  //Se cambia el color de la fuente
             g.fill(pelota.lineaCentral(getBounds()));  //Se rellena de ese color la linea central
             g.fill(pelota.getPelota());  //Se pinta de negro la pelota al terminar el juego para que no tape el mensaje del ganadors
 
-            pantallaMenu(g);
+            opcionesDeMenu(g);
+            //pantallaMenu(g);
         }
 
     }
@@ -113,19 +114,19 @@ public class MesaJuego extends JPanel {
         g2.drawString( pelota.jugador2+"",590,35);  //El primer parametro es un contador, solo se concatena a una cadena vacia para ser mostrado
 
         if (pelota.getPuntaje1() == 5){  //Si el puntaje del jugador 1 es igual a 5:
-            g.drawString("El jugador 1 ha ganado!",230,180);  //Se muestra en pantalla un mensaje del ganador
+            g.drawString("El jugador 1 ha ganado!",235,180);  //Se muestra en pantalla un mensaje del ganador
             Pelota.finDeJuego = true;  //Se cambia el estado de la variabke "finDeJuego"
             pelota.ganador.play();
         }
         if (pelota.getPuntaje2() == 5){  //Si el puntaje del jugador 2 es igual a 5:
-            g.drawString("El jugador 2 ha ganado!",230,180);  //Se muestra en pantalla un mensaje del ganador
+            g.drawString("El jugador 2 ha ganado!",235,180);  //Se muestra en pantalla un mensaje del ganador
             Pelota.finDeJuego = true;
             pelota.ganador.play();  //Se agrega el sonido del ganador
         }
 
     }
 
-    public void pantallaMenu(Graphics2D g){
+    /*public void pantallaMenu(Graphics2D g){
         Graphics2D g1 = g;
         Graphics2D g2 = g;
 
@@ -140,7 +141,44 @@ public class MesaJuego extends JPanel {
 
         g1.fillPolygon(vector2X, vector2Y, 3);
 
+    } */
+
+    public static void opcionesDeMenu(Graphics2D g){
+        //Coordenadas x=250   y=220
+        boolean bandera;  //Si se presiona enter en la opcion de juego nuevo se le asignara true, en caso de salir sera false
+
+        boolean op1 = true;
+        boolean op2 = false;
+
+        Graphics2D g1 = g;
+        Graphics2D g2 = g;
+
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("Serif",Font.BOLD,18));
+
+        int posX1 = 350, posX2 = posX1+35;
+        int posY1 = 260, posY2 = posY1+30;
+
+        String cadena1 = "Juego Nuevo";
+        String cadena2 = "Salir";
+
+        g1.drawString(cadena1, posX1, posY1);
+
+        g.setColor(Color.WHITE);
+        g2.drawString(cadena2, posX2, posY2);
+
+        if(EventoTeclado.down){
+            op1 = false;
+            g.setColor(Color.YELLOW);
+        }
+        
     }
+
+    //Crear el dibujo de una flecha, que funcionara como el seleccionador de las opciones
+    //Crear las 2 opciones(juego nuevo y salir)
+    //Crear las 2 posiciones que ocupara la flecha(al lado de los textos de opcion)
+    //Crear condicional "Mientras el juegoTermina = true" mostrar ese menu y darle un nuevo uso a las flechas arriba y abajo
+    //al presionar enter, el juego inicia de nuevo o cierra la ventana definitivamente
 
 }
 
