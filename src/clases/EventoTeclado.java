@@ -45,6 +45,7 @@ public class EventoTeclado extends KeyAdapter {
         }
         if (id == KeyEvent.VK_DOWN){  //Raquete2 -> mover abajo
             down = true;
+
         }
 
         //Al presionar la barra espaciadora se pone y quita pausa

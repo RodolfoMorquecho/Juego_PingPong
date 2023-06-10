@@ -10,6 +10,7 @@ public class Ventana extends JFrame {
     private Hilo hilo;  //Se declara un objeto de la clase Hilo
 
 
+
     //Constructor donde se incluiran toda las caracteristicas de la ventana
     public Ventana(){
         setTitle("Pong");  //Titulo de la ventana
