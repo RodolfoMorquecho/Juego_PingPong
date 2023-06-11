@@ -166,7 +166,7 @@ public class MesaJuego extends JPanel {
 
         g.setColor(Color.WHITE);
         g2.drawString(cadena2, posX2, posY2);
-        
+
         if(EventoTeclado.down){
             op1 = false;
             g.setColor(Color.YELLOW);
