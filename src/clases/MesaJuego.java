@@ -22,6 +22,9 @@ public class MesaJuego extends JPanel {
     Raqueta raqueta1 = new Raqueta(10,200);
     Raqueta raqueta2 = new Raqueta(786 -10 - Raqueta.ANCHO,200);  //Se restara 10 de espacio y el ancho de la raqueta
 
+    static boolean op1 = false;
+    static boolean op2 = false;
+
     public MesaJuego(){  //Constructor
         setBackground(Color.BLACK);
     }
@@ -153,16 +156,10 @@ public class MesaJuego extends JPanel {
 
     public static void opcionesDeMenu(Graphics2D g){
         //Coordenadas x=250   y=220
-        boolean bandera;  //Si se presiona enter en la opcion de juego nuevo se le asignara true, en caso de salir sera false
 
-        boolean op1 = true;
-        boolean op2 = false;
 
         Graphics2D g1 = g;
         Graphics2D g2 = g;
-
-        g.setColor(Color.YELLOW);
-        g.setFont(new Font("Serif",Font.BOLD,18));
 
         int posX1 = 350, posX2 = posX1+35;
         int posY1 = 260, posY2 = posY1+30;
@@ -170,22 +167,42 @@ public class MesaJuego extends JPanel {
         String cadena1 = "Juego Nuevo";
         String cadena2 = "Salir";
 
-        g1.drawString(cadena1, posX1, posY1);
-
-        g.setColor(Color.WHITE);
-        g2.drawString(cadena2, posX2, posY2);
+        g.setFont(new Font("Serif",Font.BOLD,18));
 
         if(EventoTeclado.down){
             op1 = false;
-            g.setColor(Color.YELLOW);
-            g2.drawString(cadena2, posX2, posY2);
+            op2 = true;
         }
         if (EventoTeclado.up){
-            op2 = true;
+            op1 = true;
+            op2 = false;
+        }
+
+        if (!op1 && !op2){
+            g.setColor(Color.YELLOW);
+            g1.drawString(cadena1, posX1, posY1);
+
+            g.setColor(Color.WHITE);
+            g2.drawString(cadena2, posX2, posY2);
+        }
+
+        if (!op1 && op2){
+            g.setColor(Color.WHITE);
+            g1.drawString(cadena1, posX1, posY1);
             g.setColor(Color.YELLOW);
             g2.drawString(cadena2, posX2, posY2);
             if (EventoTeclado.enter){
-                Pelota.finDeJuego = true;
+                System.exit(0);
+            }
+        }
+
+        if (op1 && !op2){
+            g.setColor(Color.YELLOW);
+            g1.drawString(cadena1, posX1, posY1);
+            g.setColor(Color.WHITE);
+            g2.drawString(cadena2, posX2, posY2);
+            if (EventoTeclado.enter){
+                g.drawString("Hola mundo",100,100);
             }
         }
 
