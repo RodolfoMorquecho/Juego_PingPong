@@ -24,6 +24,8 @@ public class MesaJuego extends JPanel {
 
     static boolean op1 = false;
     static boolean op2 = false;
+    boolean bandera1 = false;
+    boolean bandera2 = false;
 
     public MesaJuego(){  //Constructor
         setBackground(Color.BLACK);
@@ -50,9 +52,11 @@ public class MesaJuego extends JPanel {
         //Se llama al siguiente metodo para pintar el puntaje de ambos jugadores y mostrar al ganador
         //Se pinta despues este metedo ya que la pelota y linea central se pintan de negro primero y asi se evita que se sobrepongan sobre el marcador
 
-        if (pelota.getPuntaje1() <= 5 || pelota.getPuntaje2() <= 5){
+        if (pelota.getPuntaje1() < 5 && pelota.getPuntaje2() < 5){
             dibujarMarcador(g2);
         }
+
+        anunciarGanador(g2);
 
         //Ya que se dibujo el primer frame con los componentes en una posición, se debe renovar el movimiento con el método actualizar
         actualizar();
@@ -77,14 +81,19 @@ public class MesaJuego extends JPanel {
 
         //Condicional para pintar la linea central de negro en caso de que termine el juego
         //pelota.finDeJuego
-        if (pelota.getPuntaje1() > 5 || pelota.getPuntaje2() > 5){ //Si la variable finDeJuego es true significa que ha terminado el juego
+        if (pelota.getPuntaje1() >= 5 || pelota.getPuntaje2() >= 5){ //Si la variable finDeJuego es true significa que ha terminado el juego
             g.setColor(Color.BLACK);  //Se cambia el color de la fuente
             g.fill(pelota.lineaCentral(getBounds()));  //Se rellena de ese color la linea central
             g.fill(pelota.getPelota());  //Se pinta de negro la pelota al terminar el juego para que no tape el mensaje del ganadors
             g.fill(raqueta1.getRaqueta());
             g.fill(raqueta2.getRaqueta());
             pelota.ganador.stop();
+            pelota.rebote1.stop();
+            pelota.rebote2.stop();
+            pelota.falta.stop();
             opcionesDeMenu(g);
+
+
             //pantallaMenu(g);
         }
 
@@ -112,6 +121,7 @@ public class MesaJuego extends JPanel {
     }
 
     public void dibujarMarcador(Graphics2D g){
+
         //Se crean 2 variables de tipo GRaphics2D
         Graphics2D g1 = g;
         Graphics2D g2 = g;
@@ -123,40 +133,35 @@ public class MesaJuego extends JPanel {
         //Se pinta la puntuacion de los 2 jugadores con las especificaciones previas de la fuente y coordenadas
         g1.drawString(pelota.jugador1+"",200,35);  //Se escribe el mensaje a mostrar y las coordenadas en donde se dibujara
         g2.drawString( pelota.jugador2+"",590,35);  //El primer parametro es un contador, solo se concatena a una cadena vacia para ser mostrado
-
-        if (pelota.getPuntaje1() == 5){  //Si el puntaje del jugador 1 es igual a 5:
-            g.drawString("El jugador 1 ha ganado!",235,180);  //Se muestra en pantalla un mensaje del ganador
-            //Pelota.finDeJuego = true;  //Se cambia el estado de la variabke "finDeJuego"
-            pelota.ganador.play();
-        }
-        if (pelota.getPuntaje2() == 5){  //Si el puntaje del jugador 2 es igual a 5:
-            g.drawString("El jugador 2 ha ganado!",235,180);  //Se muestra en pantalla un mensaje del ganador
-            //Pelota.finDeJuego = true;
-            pelota.ganador.play();  //Se agrega el sonido del ganador
-        }
-
     }
 
-    /*public void pantallaMenu(Graphics2D g){
-        Graphics2D g1 = g;
-        Graphics2D g2 = g;
 
-        setBackground(Color.BLACK);
+    public void anunciarGanador(Graphics2D g){
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("Serif",Font.BOLD,32));  //Se le dara formato y tamaño a la fuente
 
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Serif",Font.BOLD,22));
+        if (pelota.getPuntaje1() >= 5){  //Si el puntaje del jugador 1 es igual a 5:
+            bandera1 = true;
 
-        //Flecha de seleccion
-        int vector2X [] = {370, 370, 380};  //Vector del eje X
-        int vector2Y [] = {210, 220, 215};  //Vector del eje Y
+            if (bandera1 && !bandera2){
+                g.drawString("El jugador 1 ha ganado!",235,180);  //Se muestra en pantalla un mensaje del ganador
+                pelota.ganador.play();
+            }
 
-        g1.fillPolygon(vector2X, vector2Y, 3);
+            //Pelota.finDeJuego = true;  //Se cambia el estado de la variabke "finDeJuego"
+        }
+        if (pelota.getPuntaje2() >= 5){  //Si el puntaje del jugador 2 es igual a 5:
+            bandera2 = true;
 
-    } */
+            if (!bandera1 && bandera2){
+                g.drawString("El jugador 2 ha ganado!",235,180);  //Se muestra en pantalla un mensaje del ganador
+                pelota.ganador.play();  //Se agrega el sonido del ganador
+            }
+        }
+    }
 
-    public static void opcionesDeMenu(Graphics2D g){
+    public void opcionesDeMenu(Graphics2D g){
         //Coordenadas x=250   y=220
-
 
         Graphics2D g1 = g;
         Graphics2D g2 = g;
@@ -202,17 +207,14 @@ public class MesaJuego extends JPanel {
             g.setColor(Color.WHITE);
             g2.drawString(cadena2, posX2, posY2);
             if (EventoTeclado.enter){
-                g.drawString("Hola mundo",100,100);
+                pelota.jugador1 = 0;
+                pelota.jugador2 = 0;
+                op1 = false;
+                op2 = false;
             }
         }
 
     }
-
-    //Crear el dibujo de una flecha, que funcionara como el seleccionador de las opciones
-    //Crear las 2 opciones(juego nuevo y salir)
-    //Crear las 2 posiciones que ocupara la flecha(al lado de los textos de opcion)
-    //Crear condicional "Mientras el juegoTermina = true" mostrar ese menu y darle un nuevo uso a las flechas arriba y abajo
-    //al presionar enter, el juego inicia de nuevo o cierra la ventana definitivamente
 
 }
 
