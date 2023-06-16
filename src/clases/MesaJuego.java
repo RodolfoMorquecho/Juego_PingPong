@@ -22,13 +22,14 @@ public class MesaJuego extends JPanel {
     Raqueta raqueta1 = new Raqueta(10,200);
     Raqueta raqueta2 = new Raqueta(786 -10 - Raqueta.ANCHO,200);  //Se restara 10 de espacio y el ancho de la raqueta
 
-    static boolean op1 = false;
-    static boolean op2 = false;
-    boolean bandera1 = false;
-    boolean bandera2 = false;
+    static boolean op1 = false;  //Variable que al cambiar su estado a true, significa que la tecla de "arriba" esta siendo oprimida
+    static boolean op2 = false;  //Variable que al cambiar su estado a true, significa que la tecla de "abajo" esta siendo oprimida"
+
+    boolean bandera1 = false;  //Variable que al ser true, indica que el ganador1 ha llegado primero a los 5 puntos
+    boolean bandera2 = false;  //Variable que al ser true, indica que el ganador2 ha llegado primero a los 5 puntos
 
     public MesaJuego(){  //Constructor
-        setBackground(Color.BLACK);
+        setBackground(Color.BLACK);  //El fondo sera negro
     }
 
     //Método para pintar sobre el panel
@@ -52,10 +53,12 @@ public class MesaJuego extends JPanel {
         //Se llama al siguiente metodo para pintar el puntaje de ambos jugadores y mostrar al ganador
         //Se pinta despues este metedo ya que la pelota y linea central se pintan de negro primero y asi se evita que se sobrepongan sobre el marcador
 
+        //Si los 2 puntajes son menores a 5, el marcador sera visible. En cuanto alguien gane desaparecera
         if (pelota.getPuntaje1() < 5 && pelota.getPuntaje2() < 5){
-            dibujarMarcador(g2);
+            dibujarMarcador(g2);  //Se dibuja el marcador
         }
 
+        //Funcion que mostrara al ganador despues de que el marcador desaparezca
         anunciarGanador(g2);
 
         //Ya que se dibujo el primer frame con los componentes en una posición, se debe renovar el movimiento con el método actualizar
@@ -85,16 +88,16 @@ public class MesaJuego extends JPanel {
             g.setColor(Color.BLACK);  //Se cambia el color de la fuente
             g.fill(pelota.lineaCentral(getBounds()));  //Se rellena de ese color la linea central
             g.fill(pelota.getPelota());  //Se pinta de negro la pelota al terminar el juego para que no tape el mensaje del ganadors
-            g.fill(raqueta1.getRaqueta());
+            g.fill(raqueta1.getRaqueta());  //Se pintan las 2 raquetas de negro, para que visualmente desaparezcan para los jugadores
             g.fill(raqueta2.getRaqueta());
-            pelota.ganador.stop();
+            pelota.ganador.stop();  //Se detenienen todos los sonidos que hay durante la partida de juego
             pelota.rebote1.stop();
             pelota.rebote2.stop();
             pelota.falta.stop();
+
+            //Despues de que la pantalla esta limpia, se pinta el menu con 2 opciones:
+            //Comenzar una nueva partida ó Finalizar y cerrar la ventana
             opcionesDeMenu(g);
-
-
-            //pantallaMenu(g);
         }
 
     }
@@ -109,8 +112,6 @@ public class MesaJuego extends JPanel {
         //Se agrega el movimiento de las 2 raquetas, mediante las 2 instancias que ya tenemos de la clase Raqueta
         raqueta1.moverR1(getBounds());
         raqueta2.moverR2(getBounds());
-
-        //pelota.lineaCentral(getBounds());
     }
 
     //Se creara el método 'colision' de tipo boolean ya que el return sera 'true' o 'false' en caso de que la pelota colisione con las raquetas
@@ -143,17 +144,17 @@ public class MesaJuego extends JPanel {
         if (pelota.getPuntaje1() >= 5){  //Si el puntaje del jugador 1 es igual a 5:
             bandera1 = true;
 
-            if (bandera1 && !bandera2){
+            if (bandera1 && !bandera2){  //Si el puntaje1 es true y el puntaje2 es false, se pintara que el ganador sera el jugador1
                 g.drawString("El jugador 1 ha ganado!",235,180);  //Se muestra en pantalla un mensaje del ganador
                 pelota.ganador.play();
             }
 
-            //Pelota.finDeJuego = true;  //Se cambia el estado de la variabke "finDeJuego"
+
         }
         if (pelota.getPuntaje2() >= 5){  //Si el puntaje del jugador 2 es igual a 5:
             bandera2 = true;
 
-            if (!bandera1 && bandera2){
+            if (!bandera1 && bandera2){  //Si el puntaje2 es true y el puntaje1 es false, se pintara que el ganador sera el jugador2
                 g.drawString("El jugador 2 ha ganado!",235,180);  //Se muestra en pantalla un mensaje del ganador
                 pelota.ganador.play();  //Se agrega el sonido del ganador
             }
@@ -163,9 +164,11 @@ public class MesaJuego extends JPanel {
     public void opcionesDeMenu(Graphics2D g){
         //Coordenadas x=250   y=220
 
+        //Se crean los 2 objetos de tipo Graphics2D
         Graphics2D g1 = g;
         Graphics2D g2 = g;
 
+        //Se crean las variables que contienen las coordenadas de las 2 opciones del menu final
         int posX1 = 350, posX2 = posX1+35;
         int posY1 = 260, posY2 = posY1+30;
 
@@ -174,16 +177,16 @@ public class MesaJuego extends JPanel {
 
         g.setFont(new Font("Serif",Font.BOLD,18));
 
-        if(EventoTeclado.down){
+        if(EventoTeclado.down){  //Si se presiona la flecha hacia abajo:
             op1 = false;
             op2 = true;
         }
-        if (EventoTeclado.up){
+        if (EventoTeclado.up){  //Si se presiona la flecha hacia arriba:
             op1 = true;
             op2 = false;
         }
 
-        if (!op1 && !op2){
+        if (!op1 && !op2){  //Si las dos variables op son false, se pinta como default la primer opcion seleccionada(en amarillo)
             g.setColor(Color.YELLOW);
             g1.drawString(cadena1, posX1, posY1);
 
@@ -191,25 +194,28 @@ public class MesaJuego extends JPanel {
             g2.drawString(cadena2, posX2, posY2);
         }
 
-        if (!op1 && op2){
+        if (!op1 && op2){  //Si op1 es false y op2 es verdadero significa que se presiono abajo, por lo que se esta posicionado en la segunda op()
             g.setColor(Color.WHITE);
             g1.drawString(cadena1, posX1, posY1);
             g.setColor(Color.YELLOW);
             g2.drawString(cadena2, posX2, posY2);
-            if (EventoTeclado.enter){
+            if (EventoTeclado.enter){  //Si se presiona enter en esta opcion, se cierra el juego
                 System.exit(0);
             }
         }
 
-        if (op1 && !op2){
+        if (op1 && !op2){  //Si op1 es true y op2 es falso significa que se presiono arriba, por lo que se esta posicionado en la primera op()
             g.setColor(Color.YELLOW);
             g1.drawString(cadena1, posX1, posY1);
             g.setColor(Color.WHITE);
             g2.drawString(cadena2, posX2, posY2);
-            if (EventoTeclado.enter){
-                pelota.jugador1 = 0;
+            if (EventoTeclado.enter){  //Si se presiona enter en esta opcion, se inicia una nueva partida
+                pelota.jugador1 = 0;  //Se tiene que resetear el contador del puntaje de los 2 jugadores, para salir del menu final
                 pelota.jugador2 = 0;
-                op1 = false;
+                EventoTeclado.enter = false;  //Se retorna el valor del enter para que al finalizar el juego nuevo no seleccione la primera opcion que aparezca
+                bandera1 = false;  //Se resetan las banderas que indican que jugador llego primero a los 5 puntos para que muestre el marcador
+                bandera2 = false;
+                op1 = false;  //Se resetean las variables de la seleccion de opciones a false
                 op2 = false;
             }
         }
