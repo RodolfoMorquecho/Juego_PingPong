@@ -50,33 +50,37 @@ public class EventoTeclado extends KeyAdapter {
 
         //Al presionar la barra espaciadora se pone y quita pausa
         if (id == KeyEvent.VK_SPACE){
-            i++;  //Aumenta el contador a 1 y el juego esta en pausa
+            //Solo se podra puasar el juego y aparecer el letrero de pausa durante la partida, en cuanto alguna de las banderas
+            //cambien a true, significa que algun jugador gano y solo podremos ver las opciones post-partida sin que lo cubra el letrerod de "pausa"
+            if (!MesaJuego.bandera1 && !MesaJuego.bandera2){
+                i++;  //Aumenta el contador a 1 y el juego esta en pausa
 
-            if (i%2 != 0 ){  //Ejecutara las acciones solo si el valor del contador 'i' es impar
-                //Este condicional es para evitar que se muetre en pantala la etiqueta de "pausa" cuando el juego finalizo, evitando tapar al ganador
-                if (!Pelota.finDeJuego){  //Si finDeJuego es falso, ejecutara las condiciones
-                    //Al estar en pausa el juego se agregara una etiqueta que se pintara en la mitad de la mesa, indicando al jugador la pausa
-                    //Debido a que a la mitad tambien se encuentre la linea central que indica el respawn de pelota, se pierde un poco
-                    //Para poner un fondo del mismo color de mesa(negro) a la etiqueta se necesita activar el metodo "setOpaque"
-                    etiqueta.setOpaque(true);  //Permitir que se tenga acceso a pintar el fondo de la etiqueta
-                    EventoTeclado.etiqueta.setBackground(Color.BLACK);  //Se pinta de negro el fondo de etiqueta
+                if (i%2 != 0 ){  //Ejecutara las acciones solo si el valor del contador 'i' es impar
+                    //Este condicional es para evitar que se muetre en pantala la etiqueta de "pausa" cuando el juego finalizo, evitando tapar al ganador
+                    if (!Pelota.finDeJuego){  //Si finDeJuego es falso, ejecutara las condiciones
+                        //Al estar en pausa el juego se agregara una etiqueta que se pintara en la mitad de la mesa, indicando al jugador la pausa
+                        //Debido a que a la mitad tambien se encuentre la linea central que indica el respawn de pelota, se pierde un poco
+                        //Para poner un fondo del mismo color de mesa(negro) a la etiqueta se necesita activar el metodo "setOpaque"
+                        etiqueta.setOpaque(true);  //Permitir que se tenga acceso a pintar el fondo de la etiqueta
+                        EventoTeclado.etiqueta.setBackground(Color.BLACK);  //Se pinta de negro el fondo de etiqueta
 
-                    pause = true;  //Al presionar por primera vez se le asigna true a la variable pause, teniendo en cuenta que el contador vale 0 en este punto
+                        pause = true;  //Al presionar por primera vez se le asigna true a la variable pause, teniendo en cuenta que el contador vale 0 en este punto
 
-                    etiqueta.setText("Pausa");  //Cuando entre en este condicional, la etiqueta mostrara este mensaje
+                        etiqueta.setText("Pausa");  //Cuando entre en este condicional, la etiqueta mostrara este mensaje
+                    }
                 }
-            }
-            if (i%2 == 0){  //Se verifica el condicional 1%2 == 0 y no se cumple ya que el residuo es diferente de 0, el juego sigue en pausa
-                etiqueta.setText("");  //Cuando entre en este condicional, la etiqueta se limpiara y el juego esta en movimiento
-                etiqueta.setOpaque(false);  //Cuando se quita le pausa necesitamos desactivar el color de fondo de la etiqueta para que no tape la linea central de respawn
+                if (i%2 == 0){  //Se verifica el condicional 1%2 == 0 y no se cumple ya que el residuo es diferente de 0, el juego sigue en pausa
+                    etiqueta.setText("");  //Cuando entre en este condicional, la etiqueta se limpiara y el juego esta en movimiento
+                    etiqueta.setOpaque(false);  //Cuando se quita le pausa necesitamos desactivar el color de fondo de la etiqueta para que no tape la linea central de respawn
 
-                pause = false;  //Se cambiara el estado de la variable, cuando se vuelva a presionar la barra espaciadora, aumente el contador a 2
-                                //y se pueda acceder al if ya que 2%2 si da como residuo 0.
-                //En la clase Hilo se tiene un if con condicional "(!EventoTeclado.pause)":
-                //Al presionar la barra se le asigna "true" a "pause" pero con el signo '!' lo pasa a false por lo que se deja de
-                //cuplir el condicional y pausa el funcionamiento del hilo hasta que se presione la barra de nuevo para cambiar el estado
-                //etiqueta.setVisible(pause);
+                    pause = false;  //Se cambiara el estado de la variable, cuando se vuelva a presionar la barra espaciadora, aumente el contador a 2
+                    //y se pueda acceder al if ya que 2%2 si da como residuo 0.
+                    //En la clase Hilo se tiene un if con condicional "(!EventoTeclado.pause)":
+                    //Al presionar la barra se le asigna "true" a "pause" pero con el signo '!' lo pasa a false por lo que se deja de
+                    //cuplir el condicional y pausa el funcionamiento del hilo hasta que se presione la barra de nuevo para cambiar el estado
+                    //etiqueta.setVisible(pause);
 
+                }
             }
 
         }

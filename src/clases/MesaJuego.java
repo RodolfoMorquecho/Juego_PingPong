@@ -25,8 +25,8 @@ public class MesaJuego extends JPanel {
     static boolean op1 = false;  //Variable que al cambiar su estado a true, significa que la tecla de "arriba" esta siendo oprimida
     static boolean op2 = false;  //Variable que al cambiar su estado a true, significa que la tecla de "abajo" esta siendo oprimida"
 
-    boolean bandera1 = false;  //Variable que al ser true, indica que el ganador1 ha llegado primero a los 5 puntos
-    boolean bandera2 = false;  //Variable que al ser true, indica que el ganador2 ha llegado primero a los 5 puntos
+    static boolean bandera1 = false;  //Variable que al ser true, indica que el ganador1 ha llegado primero a los 5 puntos
+    static boolean bandera2 = false;  //Variable que al ser true, indica que el ganador2 ha llegado primero a los 5 puntos
 
     public MesaJuego(){  //Constructor
         setBackground(Color.BLACK);  //El fondo sera negro
